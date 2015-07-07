@@ -28,6 +28,8 @@ gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'kaminari'
 gem 'nokogiri'
+gem 'aws-sdk'
+gem 'pluck_to_hash'
 
 group :development, :test do
   gem 'byebug'

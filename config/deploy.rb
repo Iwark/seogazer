@@ -3,10 +3,10 @@ set :repo_url, 'git@github.com:Iwark/seogazer.git'
 
 set :scm, :git
 
-set :rbenv_ruby, '2.2.1'
+set :rbenv_ruby, '2.2.2'
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/ec2_instances.yml}
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets public/uploads}
 

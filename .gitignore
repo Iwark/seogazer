@@ -5,7 +5,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -174,3 +175,4 @@ crashlytics-build.properties
 sftp-config.json
 
 
+config/ec2_instances.yml

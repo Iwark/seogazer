@@ -7,4 +7,7 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    = yield
+    .header
+      = link_to 'SEO Gazer - 検索順位チェッカー', :root
+    .main-wrapper
+      = yield
