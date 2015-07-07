@@ -84,7 +84,7 @@ namespace :crawl do
                 start = start + page * 10
 
                 # 検索URL
-                url = "http://www.google.co.jp/search?q=#{keyword[:name]}&num=10&start=#{start}"
+                url = "http://www.google.co.jp/search?q=#{URI.encode(keyword[:name])}&num=10&start=#{start}"
 
                 html  = open(url, "User-Agent" => "User-Agent: #{USER_AGENT}", proxy: proxy_url){|f| f.read }
                 doc = Nokogiri::HTML.parse(html, nil, nil)
