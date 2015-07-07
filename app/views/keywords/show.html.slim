@@ -1,0 +1,12 @@
+h1 = @keyword.name
+
+table.table
+  thead
+    tr
+      th Date
+      th Rank
+  tbody
+    - @keyword.rankings.order(created_at: :desc).each do |ranking|
+      tr
+        td = ranking.created_at.strftime("%Y/%m/%d %H:%M")
+        td = ranking.number

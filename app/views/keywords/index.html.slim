@@ -9,7 +9,7 @@ table.table
   tbody
     - @keywords.each do |keyword|
       tr
-        td = keyword.name
+        td = link_to keyword.name, keyword_path(keyword)
         td = keyword.url
         td = keyword.rankings.last.number if keyword.rankings.last
         td = link_to 'Edit', edit_keyword_path(keyword), class: 'btn btn-default'
