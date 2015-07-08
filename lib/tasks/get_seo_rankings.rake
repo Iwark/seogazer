@@ -1,9 +1,5 @@
 namespace :crawl do
 
-  task test: :environment do
-    p "test"
-  end
-
   task start: :environment do
 
     # 検索結果を30ページ(300件)取得
