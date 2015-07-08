@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
+every 1.minutes do
+  p "test"
+end
+
 every 12.hours do
   rake "crawl:start"
 end
