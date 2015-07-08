@@ -1,6 +1,6 @@
-role :app, %w{seogazer hctseogazer}
-role :web, %w{seogazer hctseogazer}
-role :db,  %w{seogazer hctseogazer}
+role :app, %w{hct}
+role :web, %w{hct}
+role :db,  %w{hct}
 
 set :stage, :production
 set :rails_env, :production
