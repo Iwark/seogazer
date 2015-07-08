@@ -19,6 +19,11 @@
 
 # Learn more: http://github.com/javan/whenever
 
+env :PATH, ENV['PATH']
+
+set :output, "log/crontab.log"
+set :environment, :production
+
 every 1.minutes do
   p "test"
 end
