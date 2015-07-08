@@ -1,6 +1,6 @@
-role :app, %w{hct}
-role :web, %w{hct}
-role :db,  %w{hct}
+role :app, %w{hctseogazer}
+role :web, %w{hctseogazer}
+role :db,  %w{hctseogazer}
 
 set :stage, :production
 set :rails_env, :production
