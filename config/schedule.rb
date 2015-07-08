@@ -25,7 +25,7 @@ set :output, "log/crontab.log"
 set :environment, :production
 
 every 1.minutes do
-  p "test"
+  rake "crawl:test"
 end
 
 every 12.hours do
