@@ -56,8 +56,11 @@ namespace :crawl do
               instance  = Aws::EC2::Resource.new.instance(instance_id)
 
               # EC2インスタンスの停止
-              instance.stop if instance.state.name != "stopped"
-              client.wait_until(:instance_stopped,  instance_ids:[instance_id])
+              while instance.state.name != "stopped"
+                instance.stop if instance.state.name == "running"
+                sleep(3)
+                instance  = Aws::EC2::Resource.new.instance(instance_id)
+              end
 
               # EC2インスタンスの起動
               instance.start
