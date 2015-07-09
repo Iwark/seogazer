@@ -102,7 +102,10 @@ namespace :crawl do
                   doc.xpath("//ol/li[@class='g']").each_with_index do |li, i|
                     rank  = start + i + 1
                     cite  = li.xpath("div//cite").to_s.gsub(/<.*?>/, "")
-                    Ranking.create(keyword_id: keyword[:id], number: rank) if cite.match /#{keyword[:url]}/
+                    if cite.match /#{keyword[:url]}/
+                      Ranking.create(keyword_id: keyword[:id], number: rank)
+                      p "#{keyword[:name]} hit! Rank: [#{rank}]"
+                    end
                   end
                 end
               end
