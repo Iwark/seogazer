@@ -74,26 +74,33 @@ namespace :crawl do
               # Proxyの取得
               instance  = Aws::EC2::Resource.new.instance(instance_id)
               proxy_url = "http://#{instance.public_dns_name}:#{Rails.application.secrets.proxy_port}"
+              
+              start_index = (request_num % REQUEST_NUM_PER_KEYWORD) * (FETCH_NUM_PER_REQUEST * REQUESTABLE_NUM_PER_INSTANCE)
 
-              p "instance started. proxy_url: #{proxy_url}"
+              now = DateTime.now.strftime('%Y/%m/%d %H:%M')
+              p "[#{now}]: #{instance_id}(#{proxy_url}) has started at #{start_index} of #{keyword[:name]}"
 
               # Rankingの取得
               10.times do |page|
 
                 # 検索開始インデックス
-                start = (request_num % REQUEST_NUM_PER_KEYWORD) * (FETCH_NUM_PER_REQUEST * REQUESTABLE_NUM_PER_INSTANCE)
-                start = start + page * 10
+                start = start_index + page * 10
 
                 # 検索URL
                 url = "http://www.google.co.jp/search?q=#{URI.encode(keyword[:name])}&num=10&start=#{start}"
 
-                html  = open(url, "User-Agent" => "User-Agent: #{USER_AGENT}", proxy: proxy_url){|f| f.read }
-                doc = Nokogiri::HTML.parse(html, nil, nil)
-                doc.xpath("//ol/li[@class='g']").each_with_index do |li, i|
-                  rank  = start + i + 1
-                  cite  = li.xpath("div//cite").to_s.gsub(/<.*?>/, "")
-                  p "[#{rank}] #{cite}, #{keyword[:url]}"
-                  Ranking.create(keyword_id: keyword[:id], number: rank) if cite.match /#{keyword[:url]}/
+                begin 
+                  html  = open(url, "User-Agent" => "User-Agent: #{USER_AGENT}", proxy: proxy_url){|f| f.read }
+                rescue => e
+                  print "Error raised getting html: "
+                  p e
+                else
+                  doc = Nokogiri::HTML.parse(html, nil, nil)
+                  doc.xpath("//ol/li[@class='g']").each_with_index do |li, i|
+                    rank  = start + i + 1
+                    cite  = li.xpath("div//cite").to_s.gsub(/<.*?>/, "")
+                    Ranking.create(keyword_id: keyword[:id], number: rank) if cite.match /#{keyword[:url]}/
+                  end
                 end
               end
             end
