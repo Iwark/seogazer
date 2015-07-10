@@ -8,10 +8,26 @@ table.table
       th Destroy
   tbody
     - @keywords.each do |keyword|
+      - recent_rankings = keyword.rankings.order(created_at: :desc).limit(3)
+      - r_length = recent_rankings.length
       tr
         td = link_to keyword.name, keyword_path(keyword)
         td = keyword.url
-        td = keyword.rankings.last.number if keyword.rankings.last
+        td.ranking-td
+          - recent_rankings.each_with_index do |r, i|
+            .ranking
+              .num
+                = r.number
+              .date = "#{time_ago_in_words r.created_at}前"
+            - if i < r_length - 1
+              .space
+                .arrow ←
+                - if i < r_length - 1
+                  - diff = recent_rankings[i+1].number - r.number
+                  - if diff > 0
+                    .diff.plus = "+#{diff}"
+                  - else
+                    .diff.minus = diff
         td = link_to 'Edit', edit_keyword_path(keyword), class: 'btn btn-default'
         td = link_to 'Destroy', keyword_path(keyword), method: :delete, class: 'btn btn-danger'
 

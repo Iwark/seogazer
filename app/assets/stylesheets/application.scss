@@ -29,3 +29,60 @@ body{
     padding: 40px 20px 0;
   }
 }
+
+.ranking-td{
+  &:after {
+    content: "";
+    clear: both;
+    height: 0;
+    display: block;
+    visibility: hidden;
+  }
+  .ranking{
+    float: left;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: 100px;
+    height: 60px;
+    text-align: center;
+    .num{
+      font-size: 18px;
+      height: 36px;
+      line-height: 36px;
+    }
+    .date{
+      font-size: 12px;
+      height: 16px;
+      line-height: 16px;
+    }
+  }
+  .space{
+    float: left;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    .arrow{
+      position: absolute;
+      width: 100%;
+      top: 0;
+      height: 60px;    
+      line-height: 60px;
+    }
+    .diff{
+      position: absolute;
+      width: 100%;
+      top: 0;
+      font-size: 13px;
+      height: 30px;
+      line-height: 30px;
+    }
+    .plus{
+      color: #5da;
+    }
+    .minus{
+      color: #f00;
+    }
+  }
+}
