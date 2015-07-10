@@ -4,6 +4,7 @@ table.table
       th Name
       th URL
       th Rank
+      th Memo
       th Edit
       th Destroy
   tbody
@@ -28,6 +29,7 @@ table.table
                     .diff.plus = "+#{diff}"
                   - else
                     .diff.minus = diff
+        td = keyword.memo
         td = link_to 'Edit', edit_keyword_path(keyword), class: 'btn btn-default'
         td = link_to 'Destroy', keyword_path(keyword), method: :delete, class: 'btn btn-danger'
 

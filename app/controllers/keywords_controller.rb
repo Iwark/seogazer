@@ -2,7 +2,7 @@ class KeywordsController < ApplicationController
 
   before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
-  permits :name, :url
+  permits :name, :url, :memo
 
   def index
     @keywords = Keyword.all
