@@ -24,6 +24,6 @@ env :PATH, ENV['PATH']
 set :output, "log/crontab.log"
 set :environment, :production
 
-every 12.hours do
+every 8.hours do
   rake "crawl:start"
 end
