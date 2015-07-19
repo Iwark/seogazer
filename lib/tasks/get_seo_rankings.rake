@@ -105,6 +105,7 @@ namespace :crawl do
                     if cite.match /#{keyword[:url]}/
                       Ranking.create(keyword_id: keyword[:id], number: rank)
                       p "#{keyword[:name]} hit! Rank: [#{rank}]"
+                      keyword[:rank] = rank
                     end
                   end
                 end
@@ -117,6 +118,10 @@ namespace :crawl do
 
         p "thread finished"
       end
+    end
+
+    keywords.each do |keyword|
+      p "#{keyword[:name]}: #{keyword[:rank]}"
     end
 
     # 全てのタスクが終了したらEC2インスタンスを全停止する(無駄な料金を発生させないため)
