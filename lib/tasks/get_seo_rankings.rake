@@ -97,6 +97,7 @@ namespace :crawl do
                 rescue => e
                   print "Error raised getting html: "
                   p e
+                  keyword[:rank] ||= 50300
                 else
                   doc = Nokogiri::HTML.parse(html, nil, nil)
                   doc.xpath("//ol/li[@class='g']").each_with_index do |li, i|
@@ -121,7 +122,11 @@ namespace :crawl do
     end
 
     keywords.each do |keyword|
+      keyword[:rank] ||= 40400
       p "#{keyword[:name]}: #{keyword[:rank]}"
+      if keyword[:rank] > 10000
+        Ranking.create(keyword_id: keyword[:id], number: keyword[:rank])
+      end
     end
 
     # 全てのタスクが終了したらEC2インスタンスを全停止する(無駄な料金を発生させないため)
