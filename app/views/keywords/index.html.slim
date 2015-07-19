@@ -17,12 +17,9 @@ table.table
         td.ranking-td
           - recent_rankings.each_with_index do |r, i|
             .ranking
-              .num
-                -if r.number < 10000
-                  = r.number
-                -else
-                  = "（#{r.number}）"
-              .date = "#{time_ago_in_words r.created_at}前"
+              -if r.number < 10000
+                .num = r.number
+                .date = "#{time_ago_in_words r.created_at}前"
             - if i < r_length - 1
               .space
                 .arrow ←
