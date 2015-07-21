@@ -14,7 +14,7 @@ class Keyword < ActiveRecord::Base
   has_many :rankings
 
   def record
-    self.rankings.order(:number).first
+    self.rankings.order(:number).first.number
   end
 
 end
