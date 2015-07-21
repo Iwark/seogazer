@@ -12,4 +12,9 @@
 
 class Keyword < ActiveRecord::Base
   has_many :rankings
+
+  def record
+    self.rankings.order(:number).first
+  end
+
 end

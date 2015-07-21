@@ -3,7 +3,8 @@ table.table
     tr
       th Name
       th URL
-      th Rank
+      th width='450' Rank
+      th width='60' Record
       th Memo
       th Edit
       th Destroy
@@ -34,6 +35,11 @@ table.table
                       .diff.plus = "+#{diff}"
                     - else
                       .diff.minus = diff
+        td style='text-align: center;'
+          -if keyword.record == 50300
+            = "X"
+          -if keyword.record < 10000
+            = keyword.record
         td = keyword.memo
         td = link_to 'Edit', edit_keyword_path(keyword), class: 'btn btn-default'
         td = link_to 'Destroy', keyword_path(keyword), method: :delete, class: 'btn btn-danger'
