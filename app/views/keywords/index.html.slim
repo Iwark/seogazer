@@ -18,9 +18,7 @@ table.table
           - recent_rankings.each_with_index do |r, i|
             .ranking
               -if r.number == 50300
-                .num = "(取得失敗)"
-              -if r.number == 40400
-                .num = "(圏外)"
+                .num = "X"
               -if r.number < 10000
                 .num = r.number
                 .date = "#{time_ago_in_words r.created_at}前"
@@ -28,8 +26,10 @@ table.table
               .space
                 .arrow ←
                 - if i < r_length - 1
-                  - diff = recent_rankings[i+1].number - r.number
-                  - unless diff > 10000 || diff < -10000
+                  - r1 = recent_rankings[i+1].number
+                  - r2 = r.number
+                  - unless r1 > 10000 || r2 > 10000
+                    - diff = r1 - r2
                     - if diff > 0
                       .diff.plus = "+#{diff}"
                     - else
