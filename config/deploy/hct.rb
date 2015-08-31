@@ -5,7 +5,7 @@ role :db,  %w{hctseogazer}
 set :stage, :production
 set :rails_env, :production
 
-set :deploy_to, '/home/ec2-user/seogazer'
+set :deploy_to, '/home/ec2-user/hctseogazer'
 
 set :default_env, {
   rbenv_root: "/home/ec2-user/.rbenv",
